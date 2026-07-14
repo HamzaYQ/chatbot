@@ -49,8 +49,15 @@ if __name__ == '__main__':
         print("[INFO] Aucun nouveau fichier MD à traiter")
     
     response_generator = RAGRetriever(chromadb_store, chunker)
-    query = input("Posez votre reponse s'il vous plait : ")
-    while query != "exit":
-        response = response_generator.response(query)
-        print(response)
-        query = input("Posez votre reponse s'il vous plait('exit' pour quitter le programme) : ")
+    print("\n=== AssurAuto Maroc — Assistant ===")
+    print("Tapez 'quitter' pour terminer la conversation.\n")
+    while True:
+        query = input("Vous : ").strip()
+        if query.lower() in ("quitter", "exit", "quit"):
+            print("Fin de la conversation.")
+            break
+        if not query:
+            continue
+
+        answer = response_generator.response(query)
+        print(f"\nAssistant : {answer}\n")

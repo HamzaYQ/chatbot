@@ -1,0 +1,53 @@
+<div class="mt-2 space-y-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    @for (card of cards; track card.PackID) {
+      <div
+        class="rounded-2xl border p-5 shadow-sm bg-white flex flex-col gap-3"
+        [class.border-[#0057B8]]="card.PackID === recommendedPackId"
+        [class.border-2]="card.PackID === recommendedPackId"
+        [class.border-[#DCE7F5]]="card.PackID !== recommendedPackId"
+      >
+        @if (card.PackID === recommendedPackId) {
+          <span class="self-start bg-[#0057B8] text-white text-xs font-medium px-3 py-1 rounded-full">
+            Recommandé pour vous
+          </span>
+        }
+
+        <div>
+          <h4 class="text-lg font-semibold text-[#1B3F91]">{{ card.Nom }}</h4>
+          <p class="text-xs text-gray-500">{{ card.Segment }}</p>
+        </div>
+
+        <p class="text-2xl font-bold text-[#0057B8]">
+          {{ card.EstimatedPrice | number:'1.0-0' }} MAD<span class="text-sm font-normal text-gray-500"> /an</span>
+        </p>
+
+        <div class="text-sm text-gray-600 space-y-1">
+          <p>📊 {{ card.CoverageCount }}/12 garanties incluses</p>
+          <p>🛣️ Kilométrage limite : {{ card.LimiteKilometrique | number:'1.0-0' }} km</p>
+          <p>💰 Franchise : {{ card.Franchise | number:'1.0-0' }} MAD</p>
+        </div>
+
+        <div class="flex flex-wrap gap-1">
+          @for (g of card.GarantiesIncluses.slice(0, 4); track g) {
+            <span class="bg-[#F7F9FC] border border-[#DCE7F5] text-xs text-gray-600 px-2 py-1 rounded-full">{{ g }}</span>
+          }
+          @if (card.GarantiesIncluses.length > 4) {
+            <span class="text-xs text-gray-400 px-2 py-1">+{{ card.GarantiesIncluses.length - 4 }} autres</span>
+          }
+        </div>
+
+        @if (!card.Eligible) {
+          <p class="text-xs text-orange-500">⚠️ Ce pack peut ne pas correspondre à votre usage déclaré.</p>
+        }
+      </div>
+    }
+  </div>
+
+  @if (recommendationText) {
+    <div class="bg-[#F7F9FC] border border-[#DCE7F5] rounded-2xl p-5">
+      <p class="text-sm font-semibold text-[#1B3F91] mb-2">💡 Ma recommandation</p>
+      <p class="text-sm text-gray-700 whitespace-pre-line">{{ recommendationText }}</p>
+    </div>
+  }
+</div>

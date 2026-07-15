@@ -1,0 +1,11 @@
+PackID,Nom,Segment,UsageRecommande,AgeMinConducteur,Description
+PK01,Eco,Economique,Privé,18,Pack Eco - couverture minimale au meilleur prix pour un usage privé occasionnel.
+PK02,Eco+,Standard,Privé,18,Pack Eco+ - couverture standard incluant bris de glace et remorquage pour un usage privé.
+PK03,Bronze,Confort,Privé;Privé-Travail,18,Pack Bronze - couverture confort avec incendie inclus, adaptée à un usage quotidien.
+PK04,Silver,Premium,Privé;Privé-Travail,18,Pack Silver - couverture premium avec dommages collision et protection conducteur.
+PK05,Silver+,Premium+,Privé;Privé-Travail;Professionnel,18,Pack Silver+ - couverture étendue incluant catastrophes naturelles, adaptée à un usage professionnel léger.
+PK06,Gold,Entreprise,Privé-Travail;Professionnel,21,Pack Gold - tous risques avec protection juridique, pour conducteurs expérimentés à usage intensif.
+PK07,Gold+,Entreprise+,Privé-Travail;Professionnel,21,Pack Gold+ - tous risques avec franchise réduite, kilométrage étendu.
+PK08,Premium,Business,Professionnel,21,Pack Premium - couverture complète pour véhicules à fort usage professionnel.
+PK09,Business,Business+,Professionnel;VTC/Taxi,23,Pack Business - couverture maximale pour flottes et usage professionnel intensif.
+PK10,VIP,Excellence,Professionnel;VTC/Taxi,25,Pack VIP - couverture illimitée en kilométrage, franchise minimale, pour les profils à très fort usage.

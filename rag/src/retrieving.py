@@ -22,7 +22,7 @@ class RAGRetriever:
         self.embedding_manager = embedding_manager
         self.groq_api_key = os.getenv('GROQ_API_KEY')
         self.mistral_api_key = os.getenv('MISTRAL_API_KEY')
-        self.llm = ChatGroq(groq_api_key=self.groq_api_key, model='llama-3.3-70b-versatile', temperature=0.1, max_tokens=2048)
+        self.llm = ChatGroq(groq_api_key=self.groq_api_key, model='llama-3.3-70b-versatile', temperature=0.1, max_tokens=1024)
         self.llm_reform = ChatMistralAI(api_key=self.mistral_api_key, model="mistral-small-latest", temperature=0)
         # Mémoire de la conversation en cours, pas de persistance disque
         self.conversation_history: list[dict[str, str]] = []
@@ -74,7 +74,7 @@ class RAGRetriever:
             print(f'[WARN] Échec de la reformulation, utilisation de la requête originale: {e}')
             return query
     
-    def retrieve(self, query: str, top_k: int = 3, score_threshold: float = 0.0) -> list[dict[str, Any]]:
+    def retrieve(self, query: str, top_k: int = 5, score_threshold: float = 0.0) -> list[dict[str, Any]]:
         '''
         Retrieve relevant documents for a query
 
@@ -148,7 +148,7 @@ class RAGRetriever:
         
         ## Generate the answer using GROQ LLM 
         prompt = f'''Tu es un assistant pour AssurAuto Maroc. Utilise le contexte suivant pour répondre
-            à la question du client de façon concise. Si l'historique de conversation est fourni, tiens-en compte
+            à la question du client de façon concise et claire. Si l'historique de conversation est fourni, tiens-en compte
             pour comprendre le fil de la discussion.
             {history_block}
             Contexte:

@@ -1,0 +1,131 @@
+<div class="bg-white border border-[#DCE7F5] rounded-2xl p-6 shadow-sm mt-2 space-y-4">
+  <h3 class="text-lg font-semibold text-[#1B3F91]">Votre profil</h3>
+
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <label class="text-sm text-gray-600">Âge</label>
+      <input type="number" min="18" max="90"
+        [ngModel]="profile().Age" (ngModelChange)="updateField('Age', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Ville</label>
+      <select [ngModel]="profile().Ville" (ngModelChange)="updateField('Ville', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+        <option value="" disabled selected>Choisir une ville</option>
+        @for (v of villes; track v) { <option [value]="v">{{ v }}</option> }
+      </select>
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Profession</label>
+      <select [ngModel]="profile().Profession" (ngModelChange)="updateField('Profession', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+        <option value="" disabled selected>Choisir une profession</option>
+        @for (p of professions; track p) { <option [value]="p">{{ p }}</option> }
+      </select>
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Usage du véhicule</label>
+      <select [ngModel]="profile().Usage" (ngModelChange)="updateField('Usage', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+        <option value="" disabled selected>Choisir un usage</option>
+        @for (u of usages; track u) { <option [value]="u">{{ u }}</option> }
+      </select>
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Kilométrage annuel</label>
+      <input type="number" min="0"
+        [ngModel]="profile().Kilometrage" (ngModelChange)="updateField('Kilometrage', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Stationnement</label>
+      <select [ngModel]="profile().GarageFerme" (ngModelChange)="updateField('GarageFerme', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+        <option value="True">Garage fermé</option>
+        <option value="False">Rue / parking ouvert</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Marque du véhicule</label>
+      <select [ngModel]="profile().Marque" (ngModelChange)="updateField('Marque', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+        <option value="" disabled selected>Choisir une marque</option>
+        @for (m of marques; track m) { <option [value]="m">{{ m }}</option> }
+      </select>
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Catégorie du véhicule</label>
+      <select [ngModel]="profile().Categorie" (ngModelChange)="updateField('Categorie', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+        <option value="" disabled selected>Choisir une catégorie</option>
+        @for (c of categories; track c) { <option [value]="c">{{ c }}</option> }
+      </select>
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Carburant</label>
+      <select [ngModel]="profile().Carburant" (ngModelChange)="updateField('Carburant', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+        <option value="" disabled selected>Choisir un carburant</option>
+        @for (c of carburants; track c) { <option [value]="c">{{ c }}</option> }
+      </select>
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Puissance fiscale (CV)</label>
+      <input type="number" min="1" max="20"
+        [ngModel]="profile().PuissanceCV" (ngModelChange)="updateField('PuissanceCV', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Budget annuel souhaité (MAD, optionnel)</label>
+      <input type="number" min="0"
+        [ngModel]="profile().budget" (ngModelChange)="updateField('budget', $event)"
+        class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+    </div>
+  </div>
+
+  <details class="text-sm text-gray-500">
+    <summary class="cursor-pointer text-[#0057B8]">Déjà client ? Précisez votre historique</summary>
+    <div class="grid grid-cols-3 gap-4 mt-3">
+      <div>
+        <label class="text-sm text-gray-600">Bonus-malus</label>
+        <input type="number" step="0.05" min="0.5" max="3.5"
+          [ngModel]="profile().BonusMalus" (ngModelChange)="updateField('BonusMalus', $event)"
+          class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+      </div>
+      <div>
+        <label class="text-sm text-gray-600">Sinistres (5 ans)</label>
+        <input type="number" min="0" max="5"
+          [ngModel]="profile().NombreSinistres5Ans" (ngModelChange)="updateField('NombreSinistres5Ans', $event)"
+          class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+      </div>
+      <div>
+        <label class="text-sm text-gray-600">Ancienneté client (ans)</label>
+        <input type="number" min="0"
+          [ngModel]="profile().AncienneteClient" (ngModelChange)="updateField('AncienneteClient', $event)"
+          class="w-full rounded-xl border border-[#DCE7F5] px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#0057B8]">
+      </div>
+    </div>
+  </details>
+
+  <div class="flex gap-3 pt-2">
+    <button (click)="submit()" [disabled]="!isValid()"
+      class="bg-[#0057B8] hover:bg-[#1B3F91] disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-full font-medium transition duration-200">
+      Voir les packs recommandés
+    </button>
+    <button (click)="cancel()"
+      class="text-gray-500 hover:text-gray-700 px-4 py-2 text-sm">
+      Annuler
+    </button>
+  </div>
+</div>
